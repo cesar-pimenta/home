@@ -1,6 +1,7 @@
 FROM ubuntu:22.04
 
 EXPOSE 8000
+WORKDIR /home
 
 RUN apt-get -qq -y update && \
     apt-get -qq -y install \
@@ -11,3 +12,6 @@ RUN apt-get -qq -y update && \
     python3 \ 
     python3-pip \
     python3-venv
+
+COPY . /home
+
