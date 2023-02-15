@@ -15,4 +15,5 @@
     </p>
     {{ post.budy|truncatewords:30|linebreaks }}
     {% endfor %}
+    {% include "core/pagination.html" with page=posts %}
 {% endblock %}
