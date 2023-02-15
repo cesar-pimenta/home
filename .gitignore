@@ -1,0 +1,21 @@
+# AMDB not-so common pathes
+*.djcache
+backup
+backup.gz
+_virtualenv/
+/*.sh
+/crontab.txt
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+
+# visual studio
+.vscode
