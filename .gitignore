@@ -8,6 +8,7 @@ _virtualenv/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.pyc
 *.py[cod]
 
 # C extensions
