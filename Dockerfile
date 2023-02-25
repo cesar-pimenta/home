@@ -11,7 +11,9 @@ RUN apt-get -qq -y update && \
     make \
     python3 \ 
     python3-pip \
-    python3-venv
+    python3-venv \
+    postgresql \
+    postgresql-contrib
 
 COPY . /home
 

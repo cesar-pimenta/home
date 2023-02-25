@@ -4,11 +4,29 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
-  <h1>{{ post.title }}</h1>
-  <p class="date">
-    Published {{ post.publish }} by {{ post.author }}
-  </p>
-  {{ post.body|markdown }}
+  <div class="row">
+    <section>
+      <h1>{{ post.title }}</h1>
+      <article>
+        <span>
+          >>>>>>>>>>>>>>>>>>>>>>>>>>
+        </span>
+        <p>
+          {{ post.body|markdown }}
+        </p>
+      </article>
+      <span>
+        >>>>>>>>>>>>>>>>>>>>>>>>>>
+      </span>
+    </section>
+
+  </div>
+  <div>
+    <p class="date">
+      Published {{ post.publish }} by {{ post.author }}
+    </p>
+  </div>
+  
   <p>
     <a href="{% url 'core:post_share' post.id %}">
       Share this post
