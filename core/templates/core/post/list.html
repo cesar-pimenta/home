@@ -1,24 +1,35 @@
-{% extends "core/base.html" %}
+{% extends "base.html" %}
 {% load blog_tags %}
 {% load static %}
-{% block title %}My Blog{% endblock %}
+{% block title %}Blog da missão{% endblock %}
 
 
 
-{% block content %}
+{% block body %}
   <div class="col-2">
-    <h1>Postagens</h1>
     {% if tag %}
       <h2>Posts tagged with "{{ tag.name }}"</h2>
     {% endif %}
   </div>
-  <div class="row">
+  <div>
     {% for post in posts %}
-      <article class="col-6 col-12-large work-item">
-        <a href="{{ post.get_absolute_url }}" class=""><img src="{% static 'css/images/thumbs/01.jpg' %}" alt="" /></a>
-        <h3>{{ post.title }}</h3>
-        <p>Lorem ipsum dolor sit amet nisl sed nullam feugiat.</p>
-      </article>
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{% static 'css/images/thumbs/01.jpg' %}" class="img-fluid rounded-start" alt="">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{ post.title }}</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+            <div class="card-body d-grid gap-2 d-md-flex justify-content-md-end">
+              <a href="{{ post.get_absolute_url }}" class="btn btn-outline-primary btn-sm">more...</a>
+            </div>
+          </div>
+        </div>
+      </div>
     {% endfor %}
   </div>
   

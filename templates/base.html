@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+            {% block title %}
+            {% endblock %}
+        </title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" />
+
+	</head>
+	<body class="">
+		<header class="">
+			{% block header %}
+                {% include 'header_navbar.html' %}
+            {% endblock %}
+		</header>
+        <div class="container pt-3">
+            {% block body %}
+            {% endblock %}
+        </div>
+        <footer>
+			{% block footer %}
+            {% endblock %}
+        </footer>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</html>
