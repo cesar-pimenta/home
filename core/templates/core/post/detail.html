@@ -7,21 +7,15 @@
   <div class="row">
     <section>
       <h1>{{ post.title }}</h1>
-      <article>
-        <span>
-          >>>>>>>>>>>>>>>>>>>>>>>>>>
-        </span>
+      <article class="rounded shadow p-3">
         <p>
           {{ post.body|markdown }}
         </p>
       </article>
-      <span>
-        >>>>>>>>>>>>>>>>>>>>>>>>>>
-      </span>
     </section>
   </div>
-  <div>
-    <p class="date">
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <p>
       Published {{ post.publish }} by {{ post.author }}
     </p>
   </div>
@@ -32,41 +26,49 @@
     </a>
   </p>
   <h2>Similar posts</h2>
-  {% for post in similar_posts %}
-    <p>
-      <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-    </p>
-  {% empty %}
-    There are no similar posts yet.
-  {% endfor %}
+  <div class="d-flex">
+    {% for post in similar_posts %}
+    <a href="{{ post.get_absolute_url }}">
+      <span class="badge text-bg-secondary m-1"> 
+        {{ post.title }}
+      </span>
+    </a>
+    {% empty %}
+      There are no similar posts yet.
+    {% endfor %}
+  </div>
   {% with comments.count as total_comments %}
     <h2>
       {{ total_comments }} comment{{ total_comments|pluralize }}
     </h2>
   {% endwith %}
   {% for comment in comments %}
+  <div class="shadow rounded p-3 mb-3">
     <div class="comment">
-      <p class="info">
+      <p class="lh-1">{{ comment.body|linebreaks }}</p>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         Comment {{ forloop.counter }} by {{ comment.name }}
         {{ comment.created }}
-      </p>
-      {{ comment.body|linebreaks }}
+      </div>
     </div>
+  </div>
   {% empty %}
-    <p>There are no comments yet.</p>
+    <p>Não existe comentários</p>
   {% endfor %}
   {% if new_comment %}
     <h2>Your comment has been added.</h2>
   {% else %}
-    <h2>Add a new comment</h2>
-    <div class="shadow rounded p-3 form-group">
-      <form method="post">
-        {{ comment_form.as_p }}
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary"> 
-            Coment
-        </button>
-      </form>
+    <div class="mb-5">
+      <h2>Add a new comment</h2>
+      <div class="shadow rounded p-4 form-group">
+        <form method="post">
+          {{ comment_form.as_p }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary"> 
+              Coment
+          </button>
+        </form>
+      </div>
     </div>
   {% endif %}
 {% endblock %}
