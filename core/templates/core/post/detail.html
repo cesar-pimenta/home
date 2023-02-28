@@ -4,57 +4,60 @@
 {% block title %}{{ post.title }}{% endblock %}
 
 {% block body %}
-  <div class="row">
-    <section>
-      <h1>{{ post.title }}</h1>
-      <article class="rounded shadow p-3">
-        <p>
-          {{ post.body|markdown }}
-        </p>
-      </article>
-    </section>
-  </div>
-  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    <p>
-      Published {{ post.publish }} by {{ post.author }}
+  <section>
+    <div class="">
+        <article class="rounded shadow p-3 px-5">
+          <h1>{{ post.title }}</h1>
+          <p>
+            {{ post.body|markdown }}
+          </p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-2">
+            <p>
+              Published {{ post.publish }} by {{ post.author }}
+            </p>
+          </div>
+        </article>
+    </div>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-2">
+    <p class="badge text-bg-primary m-1">
+      <a href="{% url 'core:post_share' post.id %}" class="text-white">
+        Share this post
+      </a>
     </p>
   </div>
-  
-  <p>
-    <a href="{% url 'core:post_share' post.id %}">
-      Share this post
-    </a>
-  </p>
-  <h2>Similar posts</h2>
-  <div class="d-flex">
-    {% for post in similar_posts %}
-    <a href="{{ post.get_absolute_url }}">
-      <span class="badge text-bg-secondary m-1"> 
-        {{ post.title }}
-      </span>
-    </a>
-    {% empty %}
-      There are no similar posts yet.
-    {% endfor %}
-  </div>
-  {% with comments.count as total_comments %}
-    <h2>
-      {{ total_comments }} comment{{ total_comments|pluralize }}
-    </h2>
-  {% endwith %}
-  {% for comment in comments %}
-  <div class="shadow rounded p-3 mb-3">
-    <div class="comment">
-      <p class="lh-1">{{ comment.body|linebreaks }}</p>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        Comment {{ forloop.counter }} by {{ comment.name }}
-        {{ comment.created }}
-      </div>
+  <div class="mb-3">
+    <h4>Similar posts</h4>
+    <div class="d-flex">
+      {% for post in similar_posts %}
+      <a href="{{ post.get_absolute_url }}">
+        <span class="badge text-bg-secondary m-1"> 
+          {{ post.title }}
+        </span>
+      </a>
+      {% empty %}
+        There are no similar posts yet.
+      {% endfor %}
     </div>
   </div>
-  {% empty %}
-    <p>Não existe comentários</p>
-  {% endfor %}
+  {% if comments %}
+    <h4>Comentários</h4>
+    {% for comment in comments %}
+    <div class="shadow rounded p-2 mb-3">
+      <div class="comment">
+        <p class="lh-1">{{ comment.body|linebreaks }}</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          Comentário de {{ comment.name }}
+        </div>
+      </div>
+    </div>
+    {% empty %}
+      <p>Não existe comentários</p>
+    {% endfor %}
+  {% else %}
+
+  {% endif %}
+
+ 
   {% if new_comment %}
     <h2>Your comment has been added.</h2>
   {% else %}
@@ -71,4 +74,5 @@
       </div>
     </div>
   {% endif %}
+  </section>
 {% endblock %}
