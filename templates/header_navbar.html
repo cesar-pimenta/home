@@ -8,39 +8,34 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
+        {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'account:dashboard' %}">Profile</a>
+          </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'core:post_list' %}">Blog</a>
         </li>
-        {% comment %} <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li> {% endcomment %}
-        {% comment %} <li class="nav-item">
-          <a class="nav-link disabled">Disabled</a>
-        </li> {% endcomment %}
       </ul>
       <div>
-        {% if request.user.is_authenticated %}
-          Olá, {{ request.user.first_name }} - 
-          <a href="{% url 'account:logout' %}">Sair</a>
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          {% if request.user.is_authenticated %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Config
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="{% url 'account:edit' %}">Editar</a></li>
+              <li><a class="dropdown-item" href="{% url 'account:password_change' %}">Alterar Senha</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{% url 'account:logout' %}">Sair</a></li>
+            </ul>
+          </li>
         {% else %}
           <a href="{% url 'account:login' %}">Log-in</a>
         {% endif %}
+        </ul>
       </div>
-      {% comment %} <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form> {% endcomment %}
     </div>
   </div>
 </nav>

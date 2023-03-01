@@ -15,7 +15,19 @@
 			{% block header %}
                 {% include 'header_navbar.html' %}
             {% endblock %}
-		</header>
+		</header>'
+        <div class="container">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li class="{{ message.tags }}">
+                        {{ message|safe }}
+                        <a href="#" class="close">x</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
         <div class="container pt-3">
             {% block body %}
             {% endblock %}
