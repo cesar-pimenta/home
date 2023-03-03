@@ -31,9 +31,11 @@ from .models import Profile
 
 @login_required
 def dashboard(request):
+    profile = Profile.objects.filter(user=request.user).first()
     return render(request,
                   'account/dashboard.html',
-                  {'section': 'dashboard'})
+                  {'section': 'dashboard',
+                   'profile': profile })
 
 
 
