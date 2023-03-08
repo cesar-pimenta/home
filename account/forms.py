@@ -28,8 +28,26 @@ class UserEditForm(forms.ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'email')
 
+    def __init__(self, *args, **kwargs):
+        super(UserEditForm, self).__init__(*args, **kwargs)
+        self.fields['first_name'].widget.attrs['class']= 'form-control col-6'
+        self.fields['last_name'].widget.attrs['class']= 'form-control col-6'
+        self.fields['email'].widget.attrs['class']= 'form-control'
+
         
 class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('apelido', 'date_of_birth', 'photo')
+        fields = ('apelido', 'date_of_birth', 'resumo')
+
+    def __init__(self, *args, **kwargs):
+        super(ProfileEditForm, self).__init__(*args, **kwargs)
+        self.fields['apelido'].widget.attrs['class']= 'form-control'
+        self.fields['date_of_birth'].widget.attrs['class']= 'form-control'
+        self.fields['resumo'].widget.attrs['class']= 'form-control'
+
+
+class PhotoForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('photo', )
