@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load blog_tags %}
+{% load static %}
+{% block title %}Loja{% endblock %}
+
+
+{% block body %}
+<div>
+    <div>
+      <div>
+        {% if not category %}
+            <a href="{% url 'store:product_list' %}" class="badge badge-light text-dark">Todos</a>
+        {% else %}
+            <a href="{% url 'store:product_list' %}" class="badge badge-primary">Todos</a>
+        {% endif %}
+      </div>
+      {% for c in categories %}
+        <li {% if category.slug == c.slug %}class="selected"
+        {% endif %}>
+          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </div>
+</div>
+  <div id="main" class="product-list">
+    <h1>{% if category %}{{ category.name }}{% else %}Products
+    {% endif %}</h1>
+    <div class="row">
+        {% for product in products %}
+            <div class="col-12 col-md-4 mb-3">
+                <div class="card shadow pt-3">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <a href="{{ product.get_absolute_url }}">
+                                <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" class="rounded img-fluid w-100"> 
+                            </a>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div>
+                                {% if category %}
+                                    {{ category.name }}
+                                {% else %}
+                                    Products
+                                {% endif %}
+                            </div>
+                            <div>
+
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="d-flex justify-content-between">
+                                <div>{{ product.name }}</div>
+                                <div>R${{ product.price }}</div>
+                            </h6>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div></div>
+                            <div>
+                                <button type="button" class="btn btn-primary btn-sm">Adicionar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>       
+            </div>
+            {% endfor %}
+    </div>
+  </div>
+{% endblock %}

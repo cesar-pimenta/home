@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.urls import reverse
 from mission.models import Mission
 
 
@@ -17,6 +17,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('store:product_list_by_category',
+                       args=[self.slug])
     
 
 class Product(models.Model):
@@ -39,5 +43,11 @@ class Product(models.Model):
             models.Index(fields=['-created']),
         ]
 
+
     def __str__(self):
         return self.name
+    
+
+    def get_absolute_url(self):
+        return reverse('store:product_detail',
+                       args=[self.id, self.slug])
