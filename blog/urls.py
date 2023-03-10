@@ -19,6 +19,8 @@ urlpatterns = [
     path('schedule/', include('schedule.urls', namespace='schedule')),
     path('mission/', include('mission.urls', namespace='mission')),
     path('store/', include('store.urls', namespace='store')),
+    path('cart/', include('cart.urls', namespace='cart')),
+    path('orders/', include('orders.urls', namespace='orders')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
 ]
