@@ -53,16 +53,15 @@
                                 <div>R${{ product.price }}</div>
                             </h6>
                         </div>
-                        <div class="mb-3 d-flex justify-content-between">
+                        <div class="mb-3 d-flex justify-content-end">
                             <div>
                                 <form action="{% url "cart:cart_add" product.id %}" method="post">
-                                    {{ cart_product_form }}
+                                    <div class="d-none">
+                                        {{ cart_product_form }}
+                                    </div>
                                     {% csrf_token %}
-                                    <input type="submit" value="Add to cart">
+                                    <button type="submit" class="btn btn-primary">Adicionar ao carrinho</button>
                                 </form>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-primary btn-sm">Adicionar</button>
                             </div>
                         </div>
                     </div>
