@@ -6,4 +6,5 @@ app_name = 'mission'
 
 urlpatterns = [
     path('', views.mission_list, name='mission_list'),
+    path('<int:id>/<slug:slug>/', views.mission_detail, name='mission_detail'),
 ]

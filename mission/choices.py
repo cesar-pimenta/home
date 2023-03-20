@@ -7,3 +7,10 @@ DAYS_CHOICES = (
         ('sabado', 'Sábado'),
         ('domingo', 'Domingo'),
     )
+
+MISSAO_STATUS_CHOICES = (
+    ( 0 , 'criação'),
+    ( 1 , 'dicernimento'),
+    ( 2 , 'ativa'),
+    ( 3 , 'desativada'),
+)
