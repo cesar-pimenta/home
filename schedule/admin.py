@@ -9,4 +9,4 @@ class EvenTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
-    list_display = ['name', 'location', 'type', 'date_ini', 'date_end']
+    list_display = ['name', 'location', 'type', 'date_ini', 'date_end', 'mission']

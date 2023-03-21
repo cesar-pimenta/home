@@ -7,4 +7,5 @@ app_name = 'schedule'
 
 urlpatterns = [
     path('', views.schedule_list, name='schedule_list'),
+    path('<int:id>/<slug:slug>/', views.schedule_detail, name='schedule_detail'),
 ]

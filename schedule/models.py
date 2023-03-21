@@ -1,4 +1,5 @@
 from django.db import models
+from mission.models import Mission
 
 # Create your models here.
 
@@ -19,6 +20,7 @@ class Event(models.Model):
     type = models.ForeignKey(EvenType, blank=True, null=True, on_delete=models.CASCADE)
     date_ini = models.DateTimeField(blank=True, null=True)
     date_end = models.DateTimeField(blank=True, null=True)
+    mission = models.ForeignKey(Mission, blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Evento'
