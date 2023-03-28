@@ -11,6 +11,7 @@ sitemaps = {
 }
 
 urlpatterns = [
+    path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('', include('landing_page.urls', namespace='landing_page')),
     path('account/', include('account.urls', namespace='account')),

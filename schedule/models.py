@@ -23,6 +23,7 @@ class Event(models.Model):
     date_end = models.DateTimeField(blank=True, null=True)
     mission = models.ForeignKey(Mission, blank=True, null=True, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
 
     class Meta:
         verbose_name = 'Evento'
