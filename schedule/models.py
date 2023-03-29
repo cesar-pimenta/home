@@ -1,6 +1,7 @@
 from django.db import models
 from mission.models import Mission
 from django.urls import reverse
+from filebrowser.fields import FileBrowseField
 
 # Create your models here.
 
@@ -24,6 +25,7 @@ class Event(models.Model):
     mission = models.ForeignKey(Mission, blank=True, null=True, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=200, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    image = FileBrowseField("Image", max_length=200, directory="images/", extensions=[".jpg", ".png"], blank=True, null=True)
 
     class Meta:
         verbose_name = 'Evento'

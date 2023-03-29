@@ -19,4 +19,6 @@ RUN pip install -r requirements/base.txt
 
 RUN python3 manage.py migrate
 
+RUN python3 manage.py collectstatic
+
 CMD [ "python3", "manage.py", "runserver", "0.0.0.0:8000" ]

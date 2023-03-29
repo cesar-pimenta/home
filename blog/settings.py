@@ -35,6 +35,7 @@ SITE_ID = 1
 
 INSTALLED_APPS = [
     'grappelli',
+    'filebrowser',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -142,6 +143,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 STATIC_ROOT = os.path.join(BASE_DIR, "_static")
 
 # Default primary key field type
@@ -165,3 +167,35 @@ EMAIL_USE_TLS = True
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CART_SESSION_ID = 'cart'
+
+# FILEBROWSER
+
+FILEBROWSER_VERSIONS = {
+    'thumbnail': {'verbose_name': 'Thumbnail', 'width': '', 'height': 100, 'opts': ''},
+    'sqsm': {'verbose_name': 'Quadrada Pequena (64)', 'width': 64, 'height': 64, 'opts': 'crop'},
+    'sqmd': {'verbose_name': 'Quadrada Média (128)', 'width': 128, 'height': 128, 'opts': 'crop'},
+    'sqlg': {'verbose_name': 'Quadrada Grande (370)', 'width': 370, 'height': 370, 'opts': 'crop'},
+    'sm': {'verbose_name': 'Pequena (185)', 'width': 295, 'height': '', 'opts': ''},
+    'md': {'verbose_name': 'Média (300)', 'width': 590, 'height': '', 'opts': ''},
+    'lg': {'verbose_name': 'Grande (1180)', 'width': 1180, 'height': '', 'opts': ''},
+    'widefull': {'verbose_name': 'Wide Full (1920x1080)', 'width': 1920, 'height': int(1920 / 16 * 9), 'opts': ''},
+    'widelg': {'verbose_name': 'Wide Grande (1180x)', 'width': 1180, 'height': int(1180 / 16 * 9), 'opts': ''},
+    'widemd': {'verbose_name': 'Wide Grande (590x)', 'width': 590, 'height': int(590 / 16 * 9), 'opts': ''},
+    'logo': {'verbose_name': 'Quadrada Média Dashboard (128)', 'width': 250, 'height': 128, 'opts': ''},
+}
+
+FILEBROWSER_EXTENSIONS = {
+    'Image': ['.jpg', '.jpeg', '.gif', '.png'],
+    'Document': ['.pdf', '.doc', '.rtf', '.txt', '.docx'],
+    'Video': ['.mov', '.wmv', '.mpeg', '.mpg', '.avi', '.rm'],
+    'Audio': ['.mp3', '.mp4', '.wav', '.aiff', '.midi', '.m4p'],
+}
+
+FILEBROWSER_ADMIN_VERSIONS = None
+FILEBROWSER_ADMIN_THUMBNAIL = 'thumbnail'
+FILEBROWSER_SEARCH_TRAVERSE = True
+FILEBROWSER_NORMALIZE_FILENAME = True
+FILEBROWSER_CONVERT_FILENAME = True
+FILEBROWSER_DIRECTORY = 'uploads/'
+FILEBROWSER_VERSIONS_BASEDIR = '_versions/'
+FILEBROWSER_OVERWRITE_EXISTING = False

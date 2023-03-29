@@ -50,4 +50,4 @@ class ProfileEditForm(forms.ModelForm):
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('photo', )
+        fields = ('image', 'photo')

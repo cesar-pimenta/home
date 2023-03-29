@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load blog_tags %}
 {% load static %}
+{% load fb_versions %}
 {% block title %}Agenda da missão{% endblock %}
 
 
@@ -9,8 +10,8 @@
         {% for evento in schedules %}
         <div class="col">
             <a href="{{ evento.get_absolute_url }}">
-                <div class="card h-100">
-                    <img src="..." class="card-img-top" alt="...">
+                <div class="card shadow">
+                    <img src="{% version evento.image 'sm'  %}" class="card-img-top" alt="...">
                     <div class="card-body">
                     <h5 class="card-title">{{ evento }}</h5>
                     <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>

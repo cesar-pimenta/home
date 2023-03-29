@@ -6,9 +6,7 @@
   <div class="shadow rounded p-3">
     <div class="form-group">
       <form method="post" enctype="multipart/form-data">
-        {% for field in photo_formd %}
-          <div><P>---</P>{{ field }}</div>
-        {% endfor %}
+        {{ photo_form }}
         {{ user_form.as_p }}
         {{ profile_form.as_p }}
         {% csrf_token %}

@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.contrib.sitemaps.views import sitemap
+from filebrowser.sites import site
 from core.sitemaps import PostSitemap
 
 sitemaps = {
@@ -11,6 +12,7 @@ sitemaps = {
 }
 
 urlpatterns = [
+    path('admin/filebrowser/', site.urls),
     path('grappelli/', include('grappelli.urls')),
     path('admin/', admin.site.urls),
     path('', include('landing_page.urls', namespace='landing_page')),
