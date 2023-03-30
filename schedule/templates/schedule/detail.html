@@ -8,19 +8,63 @@
 {% block body %}
     <div>   
         <div class="text-center">
-            <img src="{% version schedule.image 'widefull' %}" class="img-fluid w-75 rounded shadow">
+            <img src="{% version schedule.image_banner 'widefull' %}" class="img-fluid w-75 rounded shadow">
         </div>
-        <div class="container px-5 mx-5 pt-4">
+        <div class="px-md-5 mx-md-5 pt-4">
             <div class="px-5">
                 <h1>
                     {{ schedule.name }}
                 </h1>
                 <div>
-                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-clock"></i> {{ schedule.date_ini }}</small></p>
-                    <p class="card-text"><small class="text-muted"><i class="fa-solid fa-location-dot" style="color: #3823d7;"></i> {{ schedule.location }}</small></p>
-                    <p> {{ schedule.description }}</p>
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <p class="card-text"><small class="text-muted"><i class="fa-solid fa-clock"></i> {{ schedule.date_ini }}</small></p>
+                            <p class="card-text"><small class="text-muted"><i class="fa-solid fa-location-dot" style="color: #3823d7;"></i> {{ schedule.location }}</small></p>
+                            <div>
+                                <p id="resumo" class="text-truncate"> {{ schedule.description }} </p>
+                                <div class="text-center">
+                                    <div id="more" class="btn btn-light col-12" onclick="more()">
+                                        <i class="fa-solid fa-angle-down"></i>
+                                    </div>
+                                    <div id="less" class="btn btn-light col-12" onclick="less()">
+                                        <i class="fa-solid fa-angle-up"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                  <h5 class="card-title">Card title</h5>
+                                  <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                  <a class="btn btn-primary col-12" href="{% url 'enrollment:enrollment_main' schedule.id schedule.slug %}">inscrever-se</a>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                    <!-- <h3>Foto</h3>
+                    <div>
+
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $('#less').hide();
+    function more() {
+        $('#resumo').toggleClass('text-truncate', 500);
+        $('#less').show();
+        $('#more').hide();
+    };
+    function less() {
+        $('#resumo').toggleClass('text-truncate', 500);
+        $('#less').hide();
+        $('#more').show();
+    };
+</script>
 {% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from mission.models import Mission
+from account.models import Profile
 from django.urls import reverse
 from filebrowser.fields import FileBrowseField
 
@@ -26,6 +27,9 @@ class Event(models.Model):
     slug = models.SlugField(max_length=200, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     image = FileBrowseField("Image", max_length=200, directory="images/", extensions=[".jpg", ".png"], blank=True, null=True)
+    image_banner = FileBrowseField("Image Banner", max_length=200, directory="images/", extensions=[".jpg", ".png"], blank=True, null=True)
+    image_flyer = FileBrowseField("Image Flyer", max_length=200, directory="images/", extensions=[".jpg", ".png"], blank=True, null=True)
+    inscritos = models.ManyToManyField(Profile, blank=True, null=True, related_name='inscritos')
 
     class Meta:
         verbose_name = 'Evento'
